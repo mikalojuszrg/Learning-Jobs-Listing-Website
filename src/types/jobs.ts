@@ -1,17 +1,16 @@
-export type Job = {
+import { EntityMeta } from "./entity";
+import { User } from "./user";
+
+export type JobType = "freelance" | "partTime" | "fullTime";
+
+export type createJobType = {
   title: string;
-  description: string;
   price: number;
-  type: string;
+  type: JobType;
   starting_from: string;
-  drivers_license: boolean;
-  user_id: number;
-  id: number;
-  createdAt: string;
-  updatedAt: string;
+  has_drivers_license: boolean;
+  user_id: User["id"];
+  description: string;
 };
 
-export type createJobType = Omit<
-  Job,
-  "createdAt" | "updatedAt" | "id" | "user_id"
->;
+export type Job = createJobType & EntityMeta;

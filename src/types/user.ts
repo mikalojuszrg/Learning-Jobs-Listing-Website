@@ -1,13 +1,12 @@
-export type User = {
-  createdAt: string;
+import { EntityMeta } from "./entity";
+
+export type createUserType = {
   email: string;
   first_name: string;
   last_name: string;
-  id: number;
-  updatedAt: string;
   password: string;
 };
 
-export type createUserType = Omit<User, "createdAt" | "updatedAt" | "id">;
+export type User = createUserType & EntityMeta;
 
 export type LoginUserType = Pick<User, "email" | "password">;
