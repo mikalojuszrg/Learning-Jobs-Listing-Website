@@ -13,11 +13,11 @@ export const createUser = async (user: createUserType): Promise<User> => {
   return response.data;
 };
 
-export const loginUser = async (loginUser: LoginUserType) => {
+export const loginUser = async (loginUser: LoginUserType): Promise<User> => {
   const users = await fetchUsers();
   return new Promise((resolve, reject) => {
     const { email, password } = loginUser;
-    const userChecker = (u: LoginUserType) =>
+    const userChecker = (u: User) =>
       u.email === email && u.password === password;
     const existingUser = users.find(userChecker);
     existingUser ? resolve(existingUser) : reject("Invalid");
